@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-gradient{
+  background: linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+}
