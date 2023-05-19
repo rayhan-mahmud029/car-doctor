@@ -14,12 +14,13 @@ const CheckOut = () => {
         const email = form.email.value;
         const service = serviceData.title;
         const service_id = serviceData.service_id;
+        const service_img = serviceData.img;
         const phone = form.phone.value;
         const date = form.date.value;
         const payment = serviceData.price;
         const payment_status = 'pending';
         const details = form.details.value;
-        const booking = { name, email, service, service_id, phone, date, payment, payment_status, details }
+        const booking = { name, email, service, service_id, service_img, phone, date, payment, payment_status, details }
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
@@ -39,7 +40,7 @@ const CheckOut = () => {
         <div>
             <div className='relative w-full rounded-lg'>
                 <img src={serviceData.img} alt="" className='max-h-60 w-full object-cover rounded-lg custom-gradient' />
-                <div className="absolute top-10 left-10">
+                <div className="p-6 absolute top-0 text-white custom-gradient w-full h-full rounded-lg flex flex-col space-y-2">
                     <h1 className='text-2xl lg:text-6xl text-yellow-400 font-bold'>Checkout</h1>
                     <h3 className="text-xl lg:text-2xl font-semibold text-white">{serviceData.title}</h3>
                 </div>

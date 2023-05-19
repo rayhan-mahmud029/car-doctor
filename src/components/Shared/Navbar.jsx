@@ -22,6 +22,7 @@ const Navbar = () => {
             .then(() => {
                 console.log('log out successful');
                 setUser('')
+                localStorage.removeItem('access-token')
             })
             .catch(err => console.error(err.message))
     }
@@ -52,7 +53,7 @@ const Navbar = () => {
                     loading ? <progress className="progress w-12"></progress> :
                         user ? <>
                             <button className='btn btn-sm lg:btn-md btn-outline btn-success border-2 font-semibold' onClick={handleSignOut}>Sign Out</button>
-                            <img src={user.photoURL} alt="userProfile" title={user?.displayName} className='rounded-full w-10 lg:w-14 border-2' />
+                            <img src={user.photoURL !== undefined ? user.photoURL : 'https://i.ibb.co/RvGsSr7/user.png'} alt="userProfile" title={user?.displayName} className='rounded-full w-10 lg:w-14 border-2' />
                         </>
                             :
                             <Link to='/login'><button className='btn btn-sm lg:btn-md btn-outline btn-success border-2 font-semibold'>Sign In</button></Link>

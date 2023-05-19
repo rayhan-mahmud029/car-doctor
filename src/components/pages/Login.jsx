@@ -14,9 +14,26 @@ const Login = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                const loggedUser = {
+                    email: user.email
+                }
                 setUser(user)
-                navigate(prevLocation)
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // store token in local storage
+                        localStorage.setItem('access-token', data.token);
+                        navigate(prevLocation)
+                    })
+                    .catch(err => console.error(err.message))
+
             })
             .catch(err => console.error(err.message))
     }
